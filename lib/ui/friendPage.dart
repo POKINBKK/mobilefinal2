@@ -58,7 +58,8 @@ class FriendPageState extends State<FriendPage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Friends"),
+        title: Text("My Friends"),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(
