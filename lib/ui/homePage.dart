@@ -95,9 +95,9 @@ class HomePageState extends State<HomePage>{
                 CurrentUser.NAME = null;
                 CurrentUser.AGE = null;
                 CurrentUser.PASSWORD = null;
-                CurrentUser.QUOTE = null;
                 final prefs = await SharedPreferences.getInstance();
                 prefs.setString('userid', "");
+                prefs.setString('name', "");
                 Navigator.of(context).pushReplacementNamed('/');
               },
             ),

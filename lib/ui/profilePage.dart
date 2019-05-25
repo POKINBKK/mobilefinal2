@@ -3,6 +3,7 @@ import '../utils/currentUser.dart';
 import 'package:mobilefinal2/db/userDB.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class ProfilePage extends StatefulWidget{
@@ -36,7 +37,7 @@ class ProfilePageState extends State<ProfilePage>{
   final name = TextEditingController(text: CurrentUser.NAME);
   final age = TextEditingController(text: CurrentUser.AGE);
   final password = TextEditingController();
-  final quote = TextEditingController(text: CurrentUser.QUOTE);
+  final quote = TextEditingController();
 
   bool isNumeric(String s) {
     if(s == null) {
@@ -155,7 +156,6 @@ class ProfilePageState extends State<ProfilePage>{
                 userData.name = name.text;
                 userData.age = age.text;
                 userData.password = password.text;
-                userData.quote = quote.text;
                 //validate form
                 if (_formkey.currentState.validate()){
                   await user.updateUser(userData);
@@ -163,9 +163,10 @@ class ProfilePageState extends State<ProfilePage>{
                   CurrentUser.NAME = userData.name;
                   CurrentUser.AGE = userData.age;
                   CurrentUser.PASSWORD = userData.password;
-                  CurrentUser.QUOTE = userData.quote;
                   await writeContent(quote.text);
-                  Navigator.pop(context);
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setString('name', userData.name);
+                  Navigator.popAndPushNamed(context, "/home");
                 }
               }
             ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobilefinal2/db/userDB.dart';
-import 'package:mobilefinal2/ui/friendPage.dart' as prefix0;
 import 'package:toast/toast.dart';
 import '../utils/currentUser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,7 +60,6 @@ class LoginPageState extends State<LoginPage>{
         CurrentUser.NAME = userList[i].name;
         CurrentUser.AGE = userList[i].age;
         CurrentUser.PASSWORD = userList[i].password;
-        CurrentUser.QUOTE = userList[i].quote;
         print("this user valid");
         break;
       }
@@ -74,6 +72,7 @@ class LoginPageState extends State<LoginPage>{
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
+        automaticallyImplyLeading: false,
       ),
       body: Form(
         key: _formkey,
@@ -129,7 +128,6 @@ class LoginPageState extends State<LoginPage>{
                       CurrentUser.NAME = userList[i].name;
                       CurrentUser.AGE = userList[i].age;
                       CurrentUser.PASSWORD = userList[i].password;
-                      CurrentUser.QUOTE = userList[i].quote;
                       final prefs = await SharedPreferences.getInstance();
                       prefs.setString('userid', userList[i].userid);
                       prefs.setString('name', userList[i].name);
