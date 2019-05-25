@@ -63,11 +63,14 @@ class FriendPageState extends State<FriendPage>{
       body: Container(
         child: Column(
           children: <Widget>[
-            RaisedButton(
-              child: Text("BACK"),
-              onPressed: (){
-                Navigator.of(context).pushReplacementNamed('/home');
-              },
+            SizedBox(
+              width: double.infinity, // match_parent
+              child: RaisedButton(
+                child: Text("BACK"),
+                onPressed: (){
+                  Navigator.of(context).pushReplacementNamed('/home');
+                },
+              ),
             ),
             FutureBuilder(
               future: fetchUsers(),

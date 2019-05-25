@@ -54,15 +54,19 @@ class TodoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Todos"),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(
           children: <Widget>[
-            RaisedButton(
-              child: Text("BACK"),
-              onPressed: (){
-                Navigator.pop(context);
-              },
+            SizedBox(
+              width: double.infinity, // match_parent
+              child: RaisedButton(
+                child: Text("BACK"),
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+              ),
             ),
             FutureBuilder(
               future: fetchTodos(this.id),
